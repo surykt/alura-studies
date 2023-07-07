@@ -1,11 +1,10 @@
 import React from 'react';
+import Button from './Components/Button';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      Hello world
+      <Button children='Button'/>
     </div>
   );
 }
-
-export default App;
