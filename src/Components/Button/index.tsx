@@ -1,13 +1,10 @@
-import React from 'react'
+import React from "react";
+import "./style.scss";
 
 interface ButtonProps {
-  children: string
+  children: string;
 }
 
-export default function Button({ children } : ButtonProps) {
-  return(
-    <button>
-      {children}
-    </button>
-  )
+export default function Button({ children }: ButtonProps) {
+  return <button className="botao">{children}</button>;
 }
