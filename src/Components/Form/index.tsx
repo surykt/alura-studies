@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "../Button";
 import style from "./Form.module.scss";
 import { ISubjects } from "../../shared/ISubjects";
+import {v4 as uuidv4} from "uuid"
 
 interface FormProps {
   setSubjects: React.Dispatch<React.SetStateAction<ISubjects[]>>
@@ -13,7 +14,7 @@ export default function Form({ setSubjects  } : FormProps) {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubjects((lastTasks) => [ ...lastTasks, {task, time}]);
+    setSubjects((lastTasks) => [ ...lastTasks, {task, time, selected: false, completed: false, id: uuidv4() }]);
     setTask('')
     setTime('00:00')
   }

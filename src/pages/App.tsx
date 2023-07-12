@@ -7,10 +7,16 @@ import { ISubjects } from "../shared/ISubjects";
 
 export default function App() {
   const [subjects, setSubjects] = useState<ISubjects[]>([]);
+  const [isSelected, setIsSelected] = useState<ISubjects>()
+
+function selectedTask(selectedTask: ISubjects) {
+  setIsSelected(selectedTask)
+}
+
   return (
     <div className={style.AppStyle}>
       <Form setSubjects={setSubjects}/>
-      <List subjects={subjects}/>
+      <List subjects={subjects} selectedTask={selectedTask}/>
       <Timer />
     </div>
   );
