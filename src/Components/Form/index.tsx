@@ -1,14 +1,21 @@
 import { useState } from "react";
 import Button from "../Button";
 import style from "./Form.module.scss";
+import { ISubjects } from "../../shared/ISubjects";
 
-export default function Form() {
-  const [task, setTask] = useState("");
+interface FormProps {
+  setSubjects: React.Dispatch<React.SetStateAction<ISubjects[]>>
+}
+
+export default function Form({ setSubjects  } : FormProps) {
+  const [task, setTask] = useState('');
   const [time, setTime] = useState("00:00");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(task, time);
+    setSubjects((lastTasks) => [ ...lastTasks, {task, time}]);
+    setTask('')
+    setTime('00:00')
   }
 
   return (
@@ -38,7 +45,7 @@ export default function Form() {
           max="01:30:00"
         />
       </div>
-      <Button children="Button" />
+      <Button children="Button" type="submit" />
     </form>
   );
 }
