@@ -23,7 +23,7 @@ export default function App() {
     <div className={style.AppStyle}>
       <Form setSubjects={setSubjects} />
       <List subjects={subjects} selectedTask={selectedTask} />
-      <Timer />
+      <Timer isSelected={isSelected} />
     </div>
   );
 }

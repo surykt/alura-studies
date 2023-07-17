@@ -2,21 +2,24 @@ import { useState } from "react";
 import Button from "../Button";
 import style from "./Form.module.scss";
 import { ISubjects } from "../../shared/ISubjects";
-import {v4 as uuidv4} from "uuid"
+import { v4 as uuidv4 } from "uuid";
 
 interface FormProps {
-  setSubjects: React.Dispatch<React.SetStateAction<ISubjects[]>>
+  setSubjects: React.Dispatch<React.SetStateAction<ISubjects[]>>;
 }
 
-export default function Form({ setSubjects  } : FormProps) {
-  const [task, setTask] = useState('');
-  const [time, setTime] = useState("00:00");
+export default function Form({ setSubjects }: FormProps) {
+  const [task, setTask] = useState("");
+  const [time, setTime] = useState("00:00:00");
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSubjects((lastTasks) => [ ...lastTasks, {task, time, selected: false, completed: false, id: uuidv4() }]);
-    setTask('')
-    setTime('00:00')
+    setSubjects(lastTasks => [
+      ...lastTasks,
+      { task, time, selected: false, completed: false, id: uuidv4() },
+    ]);
+    setTask("");
+    setTime("00:00:00");
   }
 
   return (
@@ -37,6 +40,7 @@ export default function Form({ setSubjects  } : FormProps) {
         <label htmlFor="time">Tempo</label>
         <input
           id="time"
+          step="1"
           name="time"
           type="time"
           value={time}
