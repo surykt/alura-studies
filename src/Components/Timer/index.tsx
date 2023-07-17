@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 interface TimerProps {
   isSelected?: ISubjects;
+  finishTask: () => void;
 }
 
-export default function Timer({ isSelected }: TimerProps) {
+export default function Timer({ isSelected, finishTask }: TimerProps) {
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -18,13 +19,23 @@ export default function Timer({ isSelected }: TimerProps) {
     }
   }, [isSelected]);
 
+  function regressive(counter: number = 0) {
+    setTimeout(() => {
+      if (counter > 0) {
+        setTime(counter - 1);
+        return regressive(counter - 1);
+      }
+      finishTask();
+    }, 1000);
+  }
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o cronômetro</p>
       <div className={style.relogioWrapper}>
         <Watch time={time} />
       </div>
-      <Button children="Começar!" />
+      <Button children="Começar!" onClick={() => regressive(time)} />
     </div>
   );
 }

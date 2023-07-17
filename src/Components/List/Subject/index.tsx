@@ -15,8 +15,11 @@ export default function Subject({
 }: SubjectProps) {
   return (
     <li
-      className={`${style.item} ${selected ? style.selectedItem : ""}`}
+      className={`${style.item} ${selected ? style.selectedItem : ""} ${
+        completed ? style.completedItem : ""
+      }`}
       onClick={() =>
+        !completed &&
         selectedTask({
           task,
           time,
@@ -28,6 +31,12 @@ export default function Subject({
     >
       <h3>{task}</h3>
       <span>{time}</span>
+      {completed && (
+        <span
+          className={style.completed}
+          aria-label="Tarefa completada com sucesso"
+        ></span>
+      )}
     </li>
   );
 }
