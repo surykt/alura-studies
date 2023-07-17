@@ -1,5 +1,5 @@
 import { ISubjects } from "../../../shared/ISubjects";
-import style from "../List.module.scss";
+import style from "../Subject/Subject.module.scss";
 
 interface SubjectProps extends ISubjects {
   selectedTask: (selectedTask: ISubjects) => void;
